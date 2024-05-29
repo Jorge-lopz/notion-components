@@ -27,6 +27,12 @@
 
 <script>
 
+    window.addEventListener('DOMContentLoaded', function () {
+        setTimeout(function () {
+            document.getElementById('apiButton').style.backgroundColor = 'green';
+        }, 3000)
+    });
+
     document.getElementById('apiButton').addEventListener('click', callApi);
 
     // URL of the API you want to call
