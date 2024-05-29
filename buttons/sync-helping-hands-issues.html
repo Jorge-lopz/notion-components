@@ -11,14 +11,9 @@
 <script>
 
     fetch(`https://notion-components-seven.vercel.app/api/syncHelpingHandsIssues`)
-        .then(response => response.json())
+        .then(response => console.log('Response:', response.json()))
         .then(data => console.log(data))
         .catch(error => console.error('Error:', error));
-
-    window.addEventListener('DOMContentLoaded', function () {
-        console.log("Response: " + response);
-        console.log("Data: " + data);
-    });
 
 </script>
 
