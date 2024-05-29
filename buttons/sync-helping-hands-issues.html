@@ -5,35 +5,21 @@
     <title>Sync Helping Hands Issues</title>
 </head>
 
-<body>
-    <a id="apiButton">SYNC</a>
-</body>
-
 <style>
-    * {
-        margin: 0;
-    }
-
-    a {
-        padding: 10px 20px;
-        font-size: 16px;
-        border-radius: 5px;
-        text-decoration: none;
-        font-family: 'Segoe UI', Arial;
-        font-weight: 500;
-        background-color: #fefefe;
-    }
 </style>
 
 <script>
 
-    window.addEventListener('DOMContentLoaded', function () {
-        setTimeout(function () {
-            document.getElementById('apiButton').style.backgroundColor = 'green';
-        }, 3000)
-    });
+    const apiKey = window.API_KEY;
 
-    document.getElementById('apiButton').addEventListener('click', callApi);
+    fetch(`https://api.example.com/data?api_key=${apiKey}`)
+        .then(response => response.json())
+        .then(data => console.log(data))
+        .catch(error => console.error('Error:', error));
+
+    window.addEventListener('DOMContentLoaded', function () {
+        console.log('DOM fully loaded and parsed');
+    });
 
     // URL of the API you want to call
     const apiUrl = 'https://api.example.com/data';
@@ -49,12 +35,6 @@
 
     // Function to call the API and handle the response
     async function callApi() {
-        const button = document.getElementById('apiButton');
-
-        // Change button text to indicate loading state
-        button.textContent = 'Loading...';
-        button.disabled = true;
-
         try {
             const response = await fetch(apiUrl, options);
 
@@ -68,23 +48,15 @@
 
             // Handle the data from the API
             console.log(data);
-
-            // Change button text to indicate success
-            button.textContent = 'Success!';
         } catch (error) {
             // Handle any errors that occurred during the fetch
             console.error('There has been a problem with your fetch operation:', error);
-
-            // Change button text to indicate error
-            button.textContent = 'Error! Try again.';
-        } finally {
-            // Re-enable the button after a delay
-            setTimeout(() => {
-                button.textContent = 'Click me to call API';
-                button.disabled = false;
-            }, 2000); // 2-second delay before resetting the button
         }
     }
+
+    // Call the function to make the API call
+    callApi();
+
 </script>
 
 </html>
