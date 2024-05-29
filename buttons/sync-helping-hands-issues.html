@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Sync Helping Hands Issues</title>
+</head>
+
+<body>
+    <a id="apiButton">SYNC</a>
+</body>
+
+<style>
+    * {
+        margin: 0;
+    }
+
+    a {
+        padding: 10px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-family: 'Segoe UI', Arial;
+        font-weight: 500;
+        background-color: #fefefe;
+    }
+</style>
+
+<script>
+
+    document.getElementById('apiButton').addEventListener('click', callApi);
+
+    // URL of the API you want to call
+    const apiUrl = 'https://api.example.com/data';
+
+    // Options for the fetch request
+    const options = {
+        method: 'GET', // or 'POST', 'PUT', 'DELETE', etc.
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer your-api-token', // If the API requires authentication
+        }
+    };
+
+    // Function to call the API and handle the response
+    async function callApi() {
+        const button = document.getElementById('apiButton');
+
+        // Change button text to indicate loading state
+        button.textContent = 'Loading...';
+        button.disabled = true;
+
+        try {
+            const response = await fetch(apiUrl, options);
+
+            // Check if the response is OK (status code 200-299)
+            if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+            }
+
+            // Parse the JSON from the response
+            const data = await response.json();
+
+            // Handle the data from the API
+            console.log(data);
+
+            // Change button text to indicate success
+            button.textContent = 'Success!';
+        } catch (error) {
+            // Handle any errors that occurred during the fetch
+            console.error('There has been a problem with your fetch operation:', error);
+
+            // Change button text to indicate error
+            button.textContent = 'Error! Try again.';
+        } finally {
+            // Re-enable the button after a delay
+            setTimeout(() => {
+                button.textContent = 'Click me to call API';
+                button.disabled = false;
+            }, 2000); // 2-second delay before resetting the button
+        }
+    }
+</script>
+
+</html>
