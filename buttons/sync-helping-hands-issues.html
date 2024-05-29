@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <title>Sync Helping Hands Issues</title>
@@ -10,52 +10,15 @@
 
 <script>
 
-    const apiKey = window.API_KEY;
-
-    fetch(`https://api.example.com/data?api_key=${apiKey}`)
+    fetch(`https://notion-components-seven.vercel.app/api/syncHelpingHandsIssues`)
         .then(response => response.json())
         .then(data => console.log(data))
         .catch(error => console.error('Error:', error));
 
     window.addEventListener('DOMContentLoaded', function () {
-        console.log('DOM fully loaded and parsed');
+        console.log("Response: " + response);
+        console.log("Data: " + data);
     });
-
-    // URL of the API you want to call
-    const apiUrl = 'https://api.example.com/data';
-
-    // Options for the fetch request
-    const options = {
-        method: 'GET', // or 'POST', 'PUT', 'DELETE', etc.
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer your-api-token', // If the API requires authentication
-        }
-    };
-
-    // Function to call the API and handle the response
-    async function callApi() {
-        try {
-            const response = await fetch(apiUrl, options);
-
-            // Check if the response is OK (status code 200-299)
-            if (!response.ok) {
-                throw new Error('Network response was not ok ' + response.statusText);
-            }
-
-            // Parse the JSON from the response
-            const data = await response.json();
-
-            // Handle the data from the API
-            console.log(data);
-        } catch (error) {
-            // Handle any errors that occurred during the fetch
-            console.error('There has been a problem with your fetch operation:', error);
-        }
-    }
-
-    // Call the function to make the API call
-    callApi();
 
 </script>
 
