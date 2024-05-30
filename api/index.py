@@ -10,11 +10,12 @@ GITHUB_KEY = os.environ.get('GITHUB_KEY')
 NOTION_KEY = os.environ.get('NOTION_KEY')
 
 @app.get("/api/syncHelpingHandsIssues")
-def syncHelpingHandsIssues():
+async def syncHelpingHandsIssues():
     url = "https://api.github.com/repos/Jorge-lopz/Helping-Hands/issues"
+    authorization = "Bearer " + GITHUB_KEY
     headers = {
         "Accept": "application/vnd.github.text+json",
-        "Authorization": f"Bearer {GITHUB_KEY}"
+        "Authorization": authorization
     }
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
