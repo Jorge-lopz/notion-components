@@ -1,8 +1,14 @@
 {
-  "routes": [
+  "builds": [
     {
-      "src": "/api/syncHelpingHandsIssues",
-      "dest": "/api"
+      "src": "*.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/api/syncHelpingHandsIssues",
+      "destination": "/api"
     }
   ]
 }
