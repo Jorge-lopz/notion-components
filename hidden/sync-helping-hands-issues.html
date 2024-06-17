@@ -5,7 +5,9 @@
     <title>Sync Helping Hands Issues</title>
 </head>
 
-<body style="background: #131313"></body>
+<body style="background: #131313">
+    <iframe id="iframe"></iframe>
+</body>
 
 <script>
 
@@ -22,6 +24,27 @@
         .catch(error => {
             console.error('Error Message:', error.message);
         });
+
+    const iframe = document.getElementById('iframe');
+    iframe.style.display = 'none';
+    iframe.src = 'about:blank';
+
+    iframe.contentWindow.addEventListener('beforeunload', function (event) {
+
+        fetch('https://github-notion-proxy.vercel.app/api/syncHelpingHandsIssues', { method: 'GET' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.error('Error Message:', error.message);
+            });
+    });
 
 </script>
 
